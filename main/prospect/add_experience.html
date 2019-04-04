@@ -1,10 +1,13 @@
 {% include 'main/components/header.html' %}
-
+{% load staticfiles %}
 {% include 'main/components/hunter-navbar.html' %}
-
+<style>
+body {background-color: white;
+	  background-image: url({% static 'img/bg-pattern.png' %});}
+</style>
 <div class="container my-3 h-75">
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12" style="background-color: white">
 			<h3>Experience</h3>
 			<form method="POST">
 				{% csrf_token %}
