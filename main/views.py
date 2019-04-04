@@ -85,8 +85,53 @@ def hunter_home(request):
 				'prospect_profiles': prospect_profiles,
 				'search_term': search_term
 			}
-			return render(request, 'main/hunter/home.html', context)
+		return render(request, 'main/hunter/home.html', context)
 	return redirect('landing')
+
+def hunter_like(request, prospect):
+	search_term=''
+	if request.user.is_authenticated:
+		is_classified(request)
+		if is_hunter(request):
+			if request.method == 'POST':
+				hunter = request.user.id
+				prospectuser = User.objects.get(pk=prospect)
+				prospect = ProspectProfile.objects.get(prospect=prospectuser)
+
+				if prospect.likes.filter(pk=hunter).exists() == False:
+					prospect.likes.add(hunter)
+					prospect.save()
+			prospects = UserProfile.objects.filter(user_type="PROSPECT")
+
+			context = {
+				'prospects': prospects
+			}
+			return redirect('hunter_home')
+		return render(request, 'main/hunter/home.html', context)
+	return redirect('hunter_home')
+
+
+def hunter_dislike(request, prospect):
+	if request.user.is_authenticated:
+		is_classified(request)
+		if is_hunter(request):
+			if request.method == 'POST':
+				hunter = request.user.id
+				prospectuser = User.objects.get(pk=prospect)
+				prospect = ProspectProfile.objects.get(prospect=prospectuser)
+
+				if prospect.likes.filter(pk=hunter).exists():
+					prospect.likes.remove(hunter)
+					prospect.save()
+		
+			prospects = UserProfile.objects.filter(user_type="PROSPECT")
+			context = {
+				'prospects': prospects
+			}
+			return redirect('hunter_home')
+		return render(request, 'main/hunter/home.html', context)
+	return redirect('landing')
+
 
 def hunter_view(request, prospect=None):
 	if request.user.is_authenticated:
@@ -103,7 +148,7 @@ def hunter_view(request, prospect=None):
 				'experience': experience,
 				'snippets': snippets
 			}
-			return render(request, 'main/hunter/prospect.html', context)
+		return render(request, 'main/hunter/prospect.html', context)
 	return redirect('landing')
 
 def hunter_message(request, prospect=None):

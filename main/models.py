@@ -11,18 +11,24 @@ class UserProfile(models.Model):
 
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	user_type = models.CharField(max_length=250, choices=TYPE)
-
+	
 	def __str__(self):
 		return "%s (%s)" % (self.user.username, self.user_type)
 
+	
 class ProspectProfile(models.Model):
 	prospect = models.OneToOneField(User, on_delete=models.CASCADE)
 	github = models.CharField(max_length=100, blank=True, null=True)
 	bio = models.CharField(max_length=10000, blank=True, null=True)
 	skills = models.CharField(max_length=10000, blank=True, null=True)
-	
+	likes = models.ManyToManyField(User, related_name="likes")
+
 	def __str__(self):
 		return self.prospect.username
+
+	@property
+	def total_likes(self):
+		return "%s" % (self.likes.count())
 
 class ProspectCodeSnippet(models.Model):
 	prospect = models.ForeignKey(User, on_delete=models.CASCADE)

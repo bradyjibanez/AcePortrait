@@ -38,6 +38,25 @@
 		<th>Prospect Github</th>
 		<td>{{ profile.github }}</td>
 	</tr>
+	<tr>
+		<th>Prospect Likes</th>
+		<td>{{ profile.total_likes }}</td>
+		<th>
+			<a href="#" onClick="document.getElementById('likebutton').submit()">Like</a>
+			|<a href="#" onClick="document.getElementById('dislikebutton').submit()">Dislike</a>
+			
+			<form id="likebutton" method="POST" action="/h/prospect/{{ prospect.user.pk }}/like">
+				{% csrf_token %}
+				<input type="hidden">
+			</form>
+
+			<form id="dislikebutton" method="POST" action="/h/prospect/{{ prospect.user.pk }}/dislike">
+				{% csrf_token %}
+				<input type="hidden">
+			</form>
+
+		</th>
+	</tr>
 </table>
 <a class="btn btn-dark text-light mt-3 w-100" href="/h/prospect/{{ prospect.user.pk }}">View {{ prospect.user.username }}</a>
 {% endif %}
