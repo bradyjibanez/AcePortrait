@@ -275,7 +275,8 @@ def prospect_remove_snippet(request, snippet=None):
 		is_classified(request)
 		snippet = ProspectCodeSnippet.objects.get(pk=snippet)
 		if snippet.prospect == request.user:
-			ProspectCodeSnippet.objects.get(pk=snippet).delete()
+			snippet.delete()
+			#ProspectCodeSnippet.objects.get(pk=snippet).delete()
 		return redirect('prospect_home')
 	return redirect('landing')
 
@@ -324,7 +325,8 @@ def prospect_remove_education(request, education=None):
 		is_classified(request)
 		education = ProspectEducation.objects.get(pk=education)
 		if education.prospect == request.user:
-			ProspectEducation.objects.get(pk=education).delete()
+			education.delete()
+			#ProspectEducation.objects.get(pk=education).delete()
 		return redirect('prospect_home')
 	return redirect('landing')
 
@@ -373,6 +375,7 @@ def prospect_remove_experience(request, experience=None):
 		is_classified(request)
 		experience = ProspectExperience.objects.get(pk=education)
 		if experience.prospect == request.user:
-			ProspectExperience.objects.get(pk=education).delete()
+			experience.delete()
+			#ProspectExperience.objects.get(pk=education).delete()
 		return redirect('prospect_home')
 	return redirect('landing')
