@@ -8,8 +8,7 @@ myACEportrait is a valid means of functionality for usage described above, and l
 
 ## Getting Started
 
-In order to run in a cloud VM, as is done currently @ http://assignmentunochat.tk, it is necessary to install nginx,
-redis, uwsgi, and daphne servers and run them concurrently through server configuration provided in the /ServerConfig folder kept within this /src directory. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the servers. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04. To install these servers, run in your Ubuntu terminal:
+In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, it is necessary to install and configure apache2 as described here. Redis and uwsgi are implemented through the Django web framework concurrently, as provided through the internal Django configuration of a stock project, in order to allow for differentiating synchronous HTTP calls for application usage, and asynchronous wsgi calls for smtp interaction of hunters to huntees upon request. The ServerConfig of the Apache2 server running the initial HTTP interaction of users to the Django maintained interactions are kept within the /src directory of the root os this repository. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the server. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04.
 
 1) $ sudo apt-get update
   - required to update all included packaging within the Ubuntu machine prior to installation os server
