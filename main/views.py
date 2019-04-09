@@ -7,10 +7,12 @@ from django.core.mail import send_mail
 from main.models import *
 from main.forms import *
 
+#Call to included Django user verification control method
 def is_classified(request):
 	if not UserProfile.objects.get(user=request.user):
 		return redirect('choose_type')
 
+#Defined hunter vs prospect control function defined to guarantee prospects cannot see what hunters should see	
 def is_hunter(request):
 	profile = UserProfile.objects.get(user=request.user)
 	user_type = profile.user_type
@@ -19,7 +21,7 @@ def is_hunter(request):
 	else:
 		return False
 
-# Generic Views
+#Call to generate typical landing page
 def landing(request):
 	if request.user.is_authenticated:
 		try:
@@ -33,6 +35,7 @@ def landing(request):
 	else:
 		return render(request, 'main/landing.html')
 
+#Call to verify that user type allow for appropriate redirect
 def choose_type(request):
 	if request.user.is_authenticated:
 		if request.method == 'POST':
@@ -50,6 +53,7 @@ def choose_type(request):
 		return render(request, 'registration/choose_type.html', context)
 	return redirect('landing')
 
+#Call to render appropriate signup response
 def signup(request):
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
@@ -88,6 +92,7 @@ def hunter_home(request):
 		return render(request, 'main/hunter/home.html', context)
 	return redirect('landing')
 
+#Addition of hunter like functionality
 def hunter_like(request, prospect):
 	search_term=''
 	if request.user.is_authenticated:
@@ -110,7 +115,7 @@ def hunter_like(request, prospect):
 		return render(request, 'main/hunter/home.html', context)
 	return redirect('hunter_home')
 
-
+#Removal of a provided like by hunter to prospect
 def hunter_dislike(request, prospect):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -132,7 +137,7 @@ def hunter_dislike(request, prospect):
 		return render(request, 'main/hunter/home.html', context)
 	return redirect('landing')
 
-
+#General hunter initial home view
 def hunter_view(request, prospect=None):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -151,6 +156,7 @@ def hunter_view(request, prospect=None):
 		return render(request, 'main/hunter/prospect.html', context)
 	return redirect('landing')
 
+#Allows for smtp request of hunter to prospect
 def hunter_message(request, prospect=None):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -196,6 +202,7 @@ def prospect_home(request):
 			return render(request, 'main/prospect/home.html', context)
 	return redirect('landing')
 
+#New prospect request to add profile
 def prospect_add_profile(request):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -215,6 +222,7 @@ def prospect_add_profile(request):
 			return render(request, 'main/prospect/add_profile.html', context)
 	return redirect('landing')
 
+#Prospect altering of existing saved profile config, alters database of conatined propsect user data
 def prospect_edit_profile(request):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -232,6 +240,7 @@ def prospect_edit_profile(request):
 			}
 			return render(request, 'main/prospect/add_profile.html', context)
 
+#Allow prospect to add example of produced code
 def prospect_add_snippet(request):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -251,6 +260,7 @@ def prospect_add_snippet(request):
 			return render(request, 'main/prospect/add_snippet.html', context)
 	return redirect('landing')
 
+#Allow prospect to edit exitsing snippet saved to db
 def prospect_edit_snippet(request, snippet=None):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -270,6 +280,7 @@ def prospect_edit_snippet(request, snippet=None):
 				return render(request, 'main/prospect/add_snippet.html', context)
 	return redirect('landing')
 
+#Bye bye snippet
 def prospect_remove_snippet(request, snippet=None):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -280,6 +291,7 @@ def prospect_remove_snippet(request, snippet=None):
 		return redirect('prospect_home')
 	return redirect('landing')
 
+#See above
 def prospect_add_education(request):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -299,6 +311,7 @@ def prospect_add_education(request):
 			return render(request, 'main/prospect/add_education.html', context)
 	return redirect('landing')
 
+#See above
 def prospect_edit_education(request, education=None):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -320,6 +333,7 @@ def prospect_edit_education(request, education=None):
 				return render(request, 'main/prospect/add_education.html', context)
 	return redirect('landing')
 
+#See above
 def prospect_remove_education(request, education=None):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -330,6 +344,7 @@ def prospect_remove_education(request, education=None):
 		return redirect('prospect_home')
 	return redirect('landing')
 
+#See above
 def prospect_add_experience(request):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -349,6 +364,7 @@ def prospect_add_experience(request):
 			return render(request, 'main/prospect/add_experience.html', context)
 	return redirect('landing')
 
+#See above
 def prospect_edit_experience(request, experience=None):
 	if request.user.is_authenticated:
 		is_classified(request)
@@ -370,6 +386,7 @@ def prospect_edit_experience(request, experience=None):
 				return render(request, 'main/prospect/add_experience.html', context)
 	return redirect('landing')
 
+#See above
 def prospect_remove_experience(request, experience=None):
 	if request.user.is_authenticated:
 		is_classified(request)
