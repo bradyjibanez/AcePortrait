@@ -24,7 +24,11 @@ Should local running of the app be required, simply clone this repository to you
 
 ## Location of Corresponding Content Within this Repo
 
+In order to find all of the settings correspondance of the Django web framework to the server base required of the digital ocean droplet, it is necessary to check the /myaceportrait directory located at the root of this reporsitory. In particular, the settings.py file deals with all of the interaction base required, including definition of the database utilized to retain user settings, the name space of the myaceportrait.tk url which return the application upon browser call, and the inclusion factoring of the application to the corresponding template and MVT control implication of Django. The wsgi.py file also is modified to allow for dynamic synchronous vs asynchronous contorl. The domain myaceportrait.tk is provided by freenom.com and is a 1 year free URL maintained and referenced through the tools provided therein. 
 
+In order to find all of the application interaction, it is necessary to look in the /main directory, where all of the main Django interaction mechanism resides. In praticular, since Django is an MVT framwork, there exist the urls.py file for template to URL call reference, the models.py file to allow for definition of application objects including the hunter and prospects user objects. Arguably the most important is the views.py file, which allows for all of the control of the interaction between the models and templates (Djangos equivalent to controllers). 
+
+Within the /main folder also exists the /templates folder holding reference to all of the html and css files structuring allows for the front end control of the controller base for the applications. Here is where is most clearly defined the indivdual pages as called by URL references to the apache2 server and the control facets they offer. 
 
 ## Built With
 
