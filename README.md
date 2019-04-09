@@ -8,62 +8,32 @@ myACEportrait is a valid means of functionality for usage described above, and l
 
 ## Getting Started
 
-In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, it is necessary to install and configure apache2 as described here. Redis and uwsgi are implemented through the Django web framework concurrently, as provided through the internal Django configuration of a stock project, in order to allow for differentiating synchronous HTTP calls for application usage, and asynchronous wsgi calls for smtp interaction of hunters to huntees upon request. The ServerConfig of the Apache2 server running the initial HTTP interaction of users to the Django maintained interactions are kept within the /src directory of the root os this repository. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the server. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04.
+In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, it is necessary to install and configure apache2 as described here. Redis and uwsgi are implemented through the Django web framework concurrently, as provided through the internal Django configuration of a stock project, in order to allow for differentiating synchronous HTTP calls for application usage, and asynchronous wsgi calls for smtp interaction of hunters to huntees upon request. The ServerConfig of the Apache2 server running the initial HTTP interaction of users to the Django maintained interactions are kept within the /server directory of the root of this repository. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the server. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04.
 
-1) $ sudo apt-get update
-  - required to update all included packaging within the Ubuntu machine prior to installation os server
+1) Follow the instructions provided @ https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart in order to configure apache2 within your DigitalOcean droplet.
 
-2) $ sudo apt-get install nginx
-  - implementing nginx within the Ubuntu VM
+2) Edit your apache2 deault at /etc/apache2/sites-available/000-default.conf to that mimic that in /server/000-default.conf
 
-3) $ sudo apt-get install redis-server
-  - implementing redis within the Ubuntu VM
+3) Clone this repository into the directory located at /webapps/myaceportrait/ in your droplet
   
-4) $ sudo apt-get install build-essential python
+4) Run "$ sudo ln -s /etc/apache2/sites-available/ /etc/apache2/sites-enabled" in order to symlink your apache2 sites-available to the sites-enabled for appropriate interaction upon starting the server. 
 
-5) $ apt-get install python-dev
-  - 4/5 required for Django implementation of uWSGI/Daphne
-  
-6) $ sudo ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled
-  - creates necessary connection between config files outlined in /ServerConfig for uwsgi/daphne/redis connection, etc.
+5) Run "$sudo service apache2 start" in order to begin distribution of the applications from your droplet 
 
-These commands are all that is required. You may be wondering how Daphne and uWSGI come into play. 
+Should local running of the app be required, simpley clone this repository to your local device and run "$ python manage.py runserver 0.0.0.0:8000" from within the same directory as that including the manage.py script of the app within your device. Port 8000 can be altered to whatever preference you have should you require an alternative port.
 
-Daphne inclussion is provided through Django once the C and Python compiler interfacing becomes possible through the python-dev packaging of steps 4 and 5. In order to install, you would simply run $ pip3 install daphne and the same with uwsgi, however, this is included in python virtualenv provided here.  
+## Location of Corresponding Content Within this Repo
 
-uWSGI is inate to Django via their wsgi.py This is also taken care of in the Django configuration provided within the virtualenv of this repository.  
 
-## Configure Django with your cloud IP/domain
-
-In order to be referenced from within the cloud Ubuntu VM, all that is needed to be done is reassigning of the ALLOWED_HOSTS within the /chatter/settings.py file from this current /src directory. As stands, the current 
-
-ALLOWED_HOSTS = ['178.128.239.207', 'assignmentunochat.tk']
-
-makes it possible for users to access the app at the existing configured DigitalOcean Ubuntu VM through either above mentioned URL request. 
-
-## Deployment
-
-In order to deploy Chatter, the above given server and Django configuration should be entirely sufficient. If everything is installed and the directory hierarchy remains the same as that outline here, simply check the IP or domain pertaining to your cloud VM and you should be good to go.  
-
-All servers are governed by a supervisor script outlined also in the /ServerConfig folder. If it is seen that either Daphne or uWSGI have failed, the supervisor will run their start commands automatically again to bring them back. 
-
-Should any errors arrise, from either the synchronous Http side or the asynchronous Websocket side, the following commands can be run depending on the issue to bring the app back:
-
-- systemctl restart nginx
-- systemctl restart uwsgi
-- systemctl daemon-reload (for daphne restart)
-
-For those not interested in working to deploy, as previously mentioned, the app is available at http://assignmentunochat.tk
 
 ## Built With
 
-* [Django](https://www.djangoproject.com/) - The web framework used
-* [Nginx](https://www.nginx.com/) - The overarching URL request server
-* [Redis](https://redis.io/) - Used to queue requests provided by Nginx for Daphne and uWSGI
-* [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) - Synchoronous Http request responding server
-* [Daphne](http://manpages.ubuntu.com/manpages/bionic/man1/daphne.1.html) - Asynchronous Websocket responding server
-* [Django Channels](https://channels.readthedocs.io/en/latest/) - Mechanism for asychronous chat room user.py object development and implementation
+* [Django](https://www.djangoproject.com/) - The web framework used, including functionality of synch to asych control server uwsgi and redis queueing mechanism for differentiating the different types of HTTP calls
+* [Apache2](https://help.ubuntu.com/lts/serverguide/httpd.html) - The overarching URL request server
+* [DigitalOcean](https://www.digitalocean.com/) - Used to allow for cloud distribution through an IaaS Ubuntu 16.04 droplet VM
 
 ## Authors
 
-* **Brady Ibanez** - *Cloud based implementation and app functionality* 
+* **Brady Ibanez** 
+* **Navjot Aulakh**
+* **Nicolas Zarfino**
