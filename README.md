@@ -30,7 +30,7 @@ Should local running of the app be required, simpley clone this repository to yo
 
 * [Django](https://www.djangoproject.com/) - The web framework used, including functionality of synch to asych control server uwsgi and redis queueing mechanism for differentiating the different types of HTTP calls
 * [Apache2](https://help.ubuntu.com/lts/serverguide/httpd.html) - The overarching URL request server
-* [DigitalOcean](https://www.digitalocean.com/) - Used to allow for cloud distribution through an IaaS Ubuntu 16.04 droplet VM
+* [DigitalOcean](https://www.digitalocean.com/) - Python web framework used to allow for cloud distribution through an IaaS Ubuntu 16.04 droplet VM
 
 ## Authors
 
