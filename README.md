@@ -30,6 +30,12 @@ In order to find all of the application interaction, it is necessary to look in 
 
 Within the /main folder also exists the /templates folder holding reference to all of the html and css files structuring allows for the front end control of the controller base for the applications. Here is where is most clearly defined the indivdual pages as called by URL references to the apache2 server and the control facets they offer. 
 
+## In Order to Test
+
+To test myACEportrait, it is necessary to observe the interaction basis of the hunters through to prospects in terms of how profiles can be viewed and interacted with, including how hunters contact prospects. In order to do this, we recommend creating a fresh prospect profile. Create this profile with whatever information you like, but be sure to include a valid contact email, as this is how the hunter account will be able to contact the propspect through the application. Once you have created your fresh propspect profile, and tested the features of adding and editing information, logout and create a hunter profile. Once you are logged in as the hunter, feel free to look through the preconfigured prospect profiles, and look to see that the ne prospect you created is visible. Test liking profile of prospects, and when you have tested the search and navigation functionalities, try contacting the prospect you created. 
+
+It is assumed in this application that hunters will provide detail of the kind of interaction they are looking to engage in with the prospect, as well as return contact information, in order for the propspect to reply to the hunter. Once the correspondance feature is tested, now you have seen the general functionality intended by myACEportrait, and how only hunters are provided the search and contact functionalties. In this way, a culture of competition between prospects is impossible, since there is no way for them to see what each other has done. 
+
 ## Built With
 
 * [Django](https://www.djangoproject.com/) - The web framework used, including functionality of synch to asych control server uwsgi and redis queueing mechanism for differentiating the different types of HTTP calls
