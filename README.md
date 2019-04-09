@@ -1,9 +1,10 @@
-# CHATTER
+# MYACEPORTRAIT
 
-This is a cloud based chatforum app written by Brady Ibanez for SOFE 4630U - Cloud Computing - Assignment 1. It as an app 
-based on the premise of guess chatting with other active users for the fact that recently active users and the chatrooms
-used can be seen, but during chatting within a known room, there is no means of seeing who is in the room, or who may have
-sent a recently received message, for that matter. While the later is possible, and attainable through simple Django development, the main focus is to exemplify cloud based server config on a Linux VM including synchronous, and asychronous Websocket call interation. This was done without issue with the feature of guess chatting alone. 
+This is a cloud based first-time-hire profile advertisement application to allow for still active or recently graduated students to showcase their non-workplace verified skill sets to potential employers. It is meant to include an anonymous base of profiling from the potential hiree, or prospect's, perspective. In this way, prospects cannot see the interaction base of their cohort potentials, and can only see the interest of hunters should the hunter attempt contacting them through the asynchronous contact functionality provided within. 
+
+The app currently exists actively within a DigitalOcean Ubuntu 16.04 droplet interactable upon call to the myaceportrait.tk domain. DigitalOcean IaaS was chosen for it's potential as an elastic and scalable service upon increasing user demand. The application itself is a Python based implementation taking advantage of the toolset offered to the Python programming language through the Django webframework. Django was selected as the basis for implementation due to it's feasible inclusion of Python control between front end and back end interaction, and due to the fluidity involved in allowing for feature expansion upon necessity due to the wide spread library inclusion within. 
+
+myACEportrait is a valid means of functionality for usage described above, and leaves enough editablility to include expansion potential for whatever functionality may come to be required upon usage implications.   
 
 ## Getting Started
 
