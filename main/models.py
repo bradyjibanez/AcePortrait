@@ -2,7 +2,9 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
-# Create your models here.
+#Only definition of prospect methods is required since there is no capacity of hunters to edit db entries
+
+# Differentiation of hunter vs prospect user type.
 class UserProfile(models.Model):
 	TYPE = (
 		('HUNTER', 'Hunter'),
@@ -15,7 +17,8 @@ class UserProfile(models.Model):
 	def __str__(self):
 		return "%s (%s)" % (self.user.username, self.user_type)
 
-	
+
+#Included definition of database saved variable per prospect user object
 class ProspectProfile(models.Model):
 	prospect = models.OneToOneField(User, on_delete=models.CASCADE)
 	github = models.CharField(max_length=100, blank=True, null=True)
@@ -30,6 +33,7 @@ class ProspectProfile(models.Model):
 	def total_likes(self):
 		return "%s" % (self.likes.count())
 
+#Same as above for code example
 class ProspectCodeSnippet(models.Model):
 	prospect = models.ForeignKey(User, on_delete=models.CASCADE)
 	date_created = models.DateTimeField(auto_now_add=True)
@@ -39,6 +43,7 @@ class ProspectCodeSnippet(models.Model):
 	def __str__(self):
 		return "%s: %s" % (self.prospect.username, self.snippet_name)
 
+#See above
 class ProspectEducation(models.Model):
 	TYPE = (
 		('C', 'Certificate'),
@@ -59,6 +64,7 @@ class ProspectEducation(models.Model):
 	def __str__(self):
 		return "%s, (%s, %s in %s)" % (self.prospect.username, self.institution, self.edu_type, self.edu_subject)
 
+#See above	
 class ProspectExperience(models.Model):
 	TYPE = (
 		('W', 'Work'),
