@@ -8,7 +8,7 @@ myACEportrait is a valid means of functionality for usage described above, and l
 
 ## Getting Started
 
-In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, it is necessary to install and configure apache2 as described here. Redis and uwsgi are implemented through the Django web framework concurrently, as provided through the internal Django configuration of a stock project, in order to allow for differentiating synchronous HTTP calls for application usage, and asynchronous wsgi calls for smtp interaction of hunters to huntees upon request. The ServerConfig of the Apache2 server running the initial HTTP interaction of users to the Django maintained interactions are kept within the /server directory of the root of this repository. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the server. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04.
+In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, it is necessary to install and configure apache2 as described here. Redis and uwsgi are implemented through the Django web framework concurrently, as provided through the internal Django configuration of a stock project, in order to allow for differentiating synchronous HTTP calls for application usage, and asynchronous wsgi calls for smtp interaction of hunters to huntees upon request. The ServerConfig of the Apache2 server running the initial HTTP interaction of users to the Django maintained interactions are kept within the /server directory of the root of this repository. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the server. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04. For cloud distribution configuration:
 
 1) Follow the instructions provided @ https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart in order to configure apache2 within your DigitalOcean droplet.
 
@@ -20,7 +20,7 @@ In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, i
 
 5) Run "$sudo service apache2 start" in order to begin distribution of the applications from your droplet 
 
-Should local running of the app be required, simpley clone this repository to your local device and run "$ python manage.py runserver 0.0.0.0:8000" from within the same directory as that including the manage.py script of the app within your device. Port 8000 can be altered to whatever preference you have should you require an alternative port.
+Should local running of the app be required, simply clone this repository to your local device and run "$ python manage.py runserver 0.0.0.0:8000" from within the same directory as that including the manage.py script of the app within your device. Port 8000 can be altered to whatever preference you have should you require an alternative port.
 
 ## Location of Corresponding Content Within this Repo
 
