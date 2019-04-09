@@ -8,11 +8,11 @@ myACEportrait is a valid means of functionality for usage described above, and l
 
 ## Getting Started
 
-In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, it is necessary to install and configure apache2 as described here. Redis and uwsgi are implemented through the Django web framework concurrently, as provided through the internal Django configuration of a stock project, in order to allow for differentiating synchronous HTTP calls for application usage, and asynchronous wsgi calls for smtp interaction of hunters to huntees upon request. The ServerConfig of the Apache2 server running the initial HTTP interaction of users to the Django maintained interactions are kept within the /server directory of the root of this repository. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the server. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04. For cloud distribution configuration:
+In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, it is necessary to install and configure apache2 as described here. Redis and uwsgi are implemented through the Django web framework concurrently, as provided through the internal Django configuration of a stock project, in order to allow for differentiating synchronous HTTP calls for application usage, and asynchronous wsgi calls for smtp interaction of hunters to huntees upon request. The ServerConfig of the Apache2 server running the initial HTTP interaction of users to the Django maintained interactions are kept within the server.conf file within the root of this repository. All of the files included in /ServerConfig should be in your Ubuntu VM before starting of the server. It is also necessary that the cloud VM run is an Ubuntu VM running version 16.04. For cloud distribution configuration:
 
 1) Follow the instructions provided @ https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart in order to configure apache2 within your DigitalOcean droplet.
 
-2) Edit your apache2 deault at /etc/apache2/sites-available/000-default.conf to that mimic that in /server/000-default.conf
+2) Edit your apache2 deault at /etc/apache2/sites-available/000-default.conf to that mimic that in server.conf
 
 3) Clone this repository into the directory located at /webapps/myaceportrait/ in your droplet
   
