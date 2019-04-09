@@ -18,7 +18,7 @@ In order to run in a cloud VM, as is done currently @ http://myaceportrait.tk, i
   
 4) Run "$ sudo ln -s /etc/apache2/sites-available/ /etc/apache2/sites-enabled" in order to symlink your apache2 sites-available to the sites-enabled for appropriate interaction upon starting the server. 
 
-5) Run "$sudo service apache2 start" in order to begin distribution of the applications from your droplet 
+5) Run "$sudo service apache2 start" in order to begin distribution of the application from your droplet 
 
 Should local running of the app be required, simply clone this repository to your local device and run "$ python manage.py runserver 0.0.0.0:8000" from within the same directory as that including the manage.py script of the app within your device. Port 8000 can be altered to whatever preference you have should you require an alternative port.
 
