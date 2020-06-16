@@ -45,5 +45,3 @@ It is assumed in this application that hunters will provide detail of the kind o
 ## Authors
 
 * **Brady Ibanez** 
-* **Navjot Aulakh**
-* **Nicolas Zarfino**
