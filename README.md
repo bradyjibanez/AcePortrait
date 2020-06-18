@@ -40,7 +40,7 @@ It is assumed in this application that hunters will provide detail of the kind o
 
 * [Django](https://www.djangoproject.com/) - The web framework used, including functionality of synch to asych control server uwsgi and redis queueing mechanism for differentiating the different types of HTTP calls
 * [Apache2](https://help.ubuntu.com/lts/serverguide/httpd.html) - The overarching URL request server
-* [DigitalOcean](https://www.digitalocean.com/) - Python web framework used to allow for cloud distribution through an IaaS Ubuntu 16.04 droplet VM
+* [DigitalOcean](https://www.digitalocean.com/) - IaaS VM provider used to allow for remote distribution through an Ubuntu 16.04 droplet (cloud VM)
 
 ## Authors
 
